@@ -47,7 +47,8 @@ docker pull daocloud.io/noprom/noprom-tomcat:latest
 
 ## 依次启动容器
 ```
-docker run -p 8080:8080 -v /app:/app --name tomcat -it -d daocloud.io/noprom/noprom-tomcat:latest
+docker run -p 3306:3306 -v /app/data/mysql:/var/lib/mysql --name mysql -it -d -e MYSQL_ROOT_PASSWORD=1q2w3e4r5t daocloud.io/noprom/noprom-mysql:latest
+docker run -p 8080:8080 -v /app:/app --name tomcat -it -d --link mysql:mysql daocloud.io/noprom/noprom-tomcat:latest
 
 docker run -p 6379:6379 --name redis -it -d daocloud.io/noprom/noprom-redis:latest
 docker run -p 11211:11211 --name memcache -it -d daocloud.io/noprom/noprom-memcache:latest
