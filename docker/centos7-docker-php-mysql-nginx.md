@@ -3,7 +3,7 @@
 ## CentOS 7 中 Docker 的安装
 Docker 软件包已经包括在默认的 CentOS-Extras 软件源里。因此想要安装 docker，只需要运行下面的 yum 命令：
 
-```
+```shell
 # https://www.huangwenchao.com.cn/2016/03/docker-compose-production.html
 
 # 更新yum
@@ -33,13 +33,13 @@ pip install -U docker-compose
 ## 启动 Docker 服务
 安装完成后，使用下面的命令来启动 docker 服务，并将其设置为开机启动：
 
-```
+```shell
 systemctl start docker.service
 systemctl enable docker.service
 ```
 
 ## 下载镜像
-```
+```shell
 # 下载之前登陆daocloud.io
 docker login daocloud.io
 docker pull daocloud.io/noprom/noprom-memcache:latest
@@ -50,7 +50,7 @@ docker pull daocloud.io/noprom/noprom-php:latest
 ```
 
 ## 依次启动容器
-```
+```shell
 docker run -p 6379:6379 --name redis -it -d daocloud.io/noprom/noprom-redis:latest
 docker run -p 11211:11211 --name memcache -it -d daocloud.io/noprom/noprom-memcache:latest
 docker run -p 3306:3306 -v /app/data/mysql:/var/lib/mysql --name mysql -it -d -e MYSQL_ROOT_PASSWORD=1q2w3e4r5t daocloud.io/noprom/noprom-mysql:latest
